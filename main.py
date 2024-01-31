@@ -24,23 +24,32 @@ def binary_operations():
     print("Binary Operations\n[1] Division\n[2] Multiplication\n[3] Subtraction\n[4] Addition\n[5] Negative (2's Complement)\n[6] Back")
     select = int(input("Choose an option: "))
 
-    if select == 1:
-        menu2.division()
+    options = ["Division", "Multiplication", "Subtraction", "Addition", "Negative (2's Complement)"]
 
-    elif select == 2:
-        menu2.multiplication()
+    if select:
+        os.system('cls')
+        print(f"{options[select-1]}\n[1] Signed Binary\n[2] Unsigned Binary\n[3] Back")
+        option = int(input("Choose an option: "))
 
-    elif select == 3:
-        menu2.subtraction()
 
-    elif select == 4:
-        menu2.addition()
 
-    elif select == 5:
-        menu2.negative()
+        if select == 1:
+            menu2.division()
 
-    elif select == 6:
-        main_menu()
+        elif select == 2:
+            menu2.multiplication()
+
+        elif select == 3:
+            menu2.subtraction()
+
+        elif select == 4:
+            menu2.addition()
+
+        elif select == 5:
+            menu2.negative()
+
+        elif select == 6:
+            main_menu()
 
 # Menu-3 (Conversion)
 def conversion():
@@ -48,19 +57,27 @@ def conversion():
     print("Conversion\n[1] Binary to X\n[2] Decimal to X\n[3] Octal to X\n[4] Hexa to X\n[5] Back")
     select = int(input("Choose an option: "))
 
-    if select == 1:
-        menu3.binary()
+    options = ["Binary", "Decimal", "Octal", "Hexa"]
 
-    elif select == 2:
-        menu3.decimal()
+    if select:
+        os.system('cls')
+        print(f"{options[select-1]} to X")
+        x = input(f"{options[select-1]} = ")
 
-    elif select == 3:
-        menu3.octal()
+        if select == 1:
+            menu3.binary()
 
-    elif select == 4:
-        menu3.hexa()
-    
-    elif select == 5:
-        main_menu()
+        elif select == 2:
+            menu3.decimal()
 
-main_menu()
+        elif select == 3:
+            menu3.octal()
+
+        elif select == 4:
+            menu3.hexa()
+        
+        elif select == 5:
+            main_menu()
+
+if __name__ == "__main__":
+    main_menu()
