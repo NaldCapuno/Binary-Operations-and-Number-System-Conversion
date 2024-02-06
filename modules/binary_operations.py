@@ -5,18 +5,30 @@ def division_unsigned(binary1, binary2):
 def multiplication_unsigned(binary1, binary2):
     pass
 
-def subtraction_unsigned(binary1, binary2): # Not sure if working correctly
-    max_len = max(len(binary1), len(binary2))
-    binary1 = binary1.zfill(max_len)
-    binary2 = binary2.zfill(max_len)
-
+def subtraction_unsigned(binary1, binary2):
     borrow = 0
     result = ""
     decimal_index = None
 
-    if '.' in binary1 or '.' in binary2:
+    # check for decimal
+    if '.' in binary1 and '.' in binary2:
         decimal_index = binary1.index('.') - len(binary1) + 1
 
+    # adding decimal if one have decimal and other have no decimal
+    if '.' in binary1 and '.' not in binary2:
+        decimal_index = binary1.index('.') - len(binary1) + 1
+        binary2 = binary2 + '.' + ("0" * (decimal_index * -1))
+
+    elif '.' in binary2 and '.' not in binary1:
+        decimal_index = binary2.index('.') - len(binary2) + 1
+        binary1 = binary1 + '.' + ("0" * (decimal_index * -1))
+
+    # padding with 0s to make sure that both have same length
+    max_len = max(len(binary1), len(binary2))
+    binary1 = binary1.zfill(max_len)
+    binary2 = binary2.zfill(max_len)
+
+    # subtracting
     for i in range(max_len - 1, -1, -1):
         if binary1[i] == '.' or binary2[i] == '.':
             continue
@@ -31,17 +43,29 @@ def subtraction_unsigned(binary1, binary2): # Not sure if working correctly
     print(f"\n{binary1} - {binary2} = {result}")
 
 def addition_unsigned(binary1, binary2):
-    max_len = max(len(binary1), len(binary2))
-    binary1 = binary1.zfill(max_len)
-    binary2 = binary2.zfill(max_len)
-
     carry = 0
     result = ""
     decimal_index = None
 
-    if '.' in binary1 or '.' in binary2:
+    # check for decimal
+    if '.' in binary1 and '.' in binary2:
         decimal_index = binary1.index('.') - len(binary1) + 1
 
+    # adding decimal if one have decimal and other have no decimal
+    if '.' in binary1 and '.' not in binary2:
+        decimal_index = binary1.index('.') - len(binary1) + 1
+        binary2 = binary2 + '.' + ("0" * (decimal_index * -1))
+
+    elif '.' in binary2 and '.' not in binary1:
+        decimal_index = binary2.index('.') - len(binary2) + 1
+        binary1 = binary1 + '.' + ("0" * (decimal_index * -1))
+
+    # padding with 0s to make sure that both have same length
+    max_len = max(len(binary1), len(binary2))
+    binary1 = binary1.zfill(max_len)
+    binary2 = binary2.zfill(max_len)
+
+    # adding
     for i in range(max_len - 1, -1, -1):
         if binary1[i] == '.' or binary2[i] == '.':
             continue
