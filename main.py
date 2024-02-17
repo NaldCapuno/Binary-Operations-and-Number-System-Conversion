@@ -93,21 +93,37 @@ def conversion():
 
     if select:
         os.system('cls')
-        print(f"{options[int(select)-1]} to X")
+        print(f"{options[int(select)-1]} to X\n")
 
-        x = input(f"Enter {options[int(select)-1]}: ")
+        x = input(f"Input {options[int(select)-1]}: ")
 
         if select == '1':
-            menu3.binary(x)
+            decimal = menu3.binary_to_decimal(x)
+            hexa = menu3.binary_to_hexa(x)
+            octal = menu3.binary_to_octal(x)
+
+            print(f"Output:\n\nDecimal: {decimal}\nHexa: {hexa}\nOctal: {octal}")
 
         elif select == '2':
-            menu3.decimal(x)
+            binary = menu3.decimal_to_binary(x)
+            hexa = menu3.binary_to_hexa(binary)
+            octal = menu3.binary_to_octal(binary)
+
+            print(f"Output:\n\nBinary: {binary}\nHexa: {hexa}\nOctal: {octal}")
 
         elif select == '3':
-            menu3.octal(x)
+            binary = menu3.octal_to_binary(x)
+            decimal = menu3.binary_to_decimal(binary)
+            hexa = menu3.binary_to_hexa(binary)
+
+            print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nHexa: {hexa}")
 
         elif select == '4':
-            menu3.hexa(x)
+            binary = menu3.hexa_to_binary(x)
+            decimal = menu3.binary_to_decimal(binary)
+            octal = menu3.binary_to_octal(binary)
+
+            print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nOctal: {octal}")
 
         input("\nPress Enter to continue...")
 
