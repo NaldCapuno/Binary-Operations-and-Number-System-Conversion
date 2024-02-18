@@ -29,7 +29,7 @@ def binary_operations():
     if select == '6':
         main_menu()
 
-    if select:
+    if int(select) >= 1 and int(select) <= 4:
         os.system('cls')
         print(f"Binary {options[int(select)-1]}\n[1] Signed Binary\n[2] Unsigned Binary")
         option = input("Choose an option: ")
@@ -38,59 +38,61 @@ def binary_operations():
             os.system('cls')
             print(f"Binary {options[int(select)-1]} (Signed)")
 
-            binary1 = input("Enter Binary 1: ")
-            binary2 = input("Enter Binary 2: ")
-
             if select == '1':
-                menu2.division_signed(binary1, binary2)
+                pass
 
             elif select == '2':
-                menu2.multiplication_signed(binary1, binary2)
+                pass
 
             elif select == '3':
-                menu2.subtraction_signed(binary1, binary2)
+                pass
 
             elif select == '4':
-                menu2.addition_signed(binary1, binary2)
-
-            elif select == '5':
-                menu2.negative_signed(binary1, binary2)
+                pass
 
         elif option == '2':
             os.system('cls')
             print(f"Binary {options[int(select)-1]} (Unsigned)")
 
-            binary1 = input("Input Binary 1: ")
-            binary2 = input("Input Binary 2: ")
-
             if select == '1':
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
                 quotient = menu2.division_unsigned(binary1, binary2)
                 quotient_binary = menu3.decimal_to_binary(quotient)
 
                 print(f"\n{binary1} / {binary2} = {quotient_binary}")
 
             elif select == '2':
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
                 product = menu2.multiplication_unsigned(binary1, binary2)
                 product_binary = menu3.decimal_to_binary(product)
 
                 print(f"\n{binary1} * {binary2} = {product_binary}")
 
             elif select == '3':
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
                 difference = menu2.subtraction_unsigned(binary1, binary2)
                 difference_binary = menu3.decimal_to_binary(difference)
 
                 print(f"\n{binary1} - {binary2} = {difference_binary}")
 
             elif select == '4':
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
                 sum = menu2.addition_unsigned(binary1, binary2)
                 sum_binary = menu3.decimal_to_binary(sum)
 
                 print(f"\n{binary1} + {binary2} = {sum_binary}")
 
-            elif select == '5':
-                menu2.negative_unsigned()
+    elif select == '5':
+        os.system('cls')
+        print(f"{options[int(select)-1]}")
+        binary = input("Input Binary: ")
+        menu2.negative_unsigned(binary)
 
-        input("\nPress Enter to continue...")
+    input('Press Enter to continue...')
 
 # Menu-3 (Conversion)
 def conversion():

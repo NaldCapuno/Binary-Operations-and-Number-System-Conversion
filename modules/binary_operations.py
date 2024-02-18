@@ -6,10 +6,9 @@ def division_unsigned(binary1, binary2):
         decimal = 0
         # checking for radix
         if '.' in x:
-            whole = x[:x.index('.')]
-            frac = x[x.index('.')+1:]
+            whole, frac = x.split('.')
 
-            # conversion
+            # converting binary to decimal
             for i in range(len(whole)-1, -1, -1):
                 decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
@@ -33,10 +32,9 @@ def multiplication_unsigned(binary1, binary2):
         decimal = 0
         # checking for radix
         if '.' in x:
-            whole = x[:x.index('.')]
-            frac = x[x.index('.')+1:]
+            whole, frac = x.split('.')
 
-            # conversion
+            # converting binary to decimal
             for i in range(len(whole)-1, -1, -1):
                 decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
@@ -60,10 +58,9 @@ def subtraction_unsigned(binary1, binary2):
         decimal = 0
         # checking for radix
         if '.' in x:
-            whole = x[:x.index('.')]
-            frac = x[x.index('.')+1:]
+            whole, frac = x.split('.')
 
-            # conversion
+            # converting binary to decimal
             for i in range(len(whole)-1, -1, -1):
                 decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
@@ -87,10 +84,9 @@ def addition_unsigned(binary1, binary2):
         decimal = 0
         # checking for radix
         if '.' in x:
-            whole = x[:x.index('.')]
-            frac = x[x.index('.')+1:]
+            whole, frac = x.split('.')
 
-            # conversion
+            # converting binary to decimal
             for i in range(len(whole)-1, -1, -1):
                 decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
@@ -106,5 +102,5 @@ def addition_unsigned(binary1, binary2):
     sum = str(decimals[0] + decimals[1])
     return sum
 
-def negative_unsigned():
-    binary = input('Input Binary: ')
+def negative_unsigned(binary):
+    pass
