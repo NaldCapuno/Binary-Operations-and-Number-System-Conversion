@@ -1,4 +1,3 @@
-# Unsigned
 def division_unsigned(binary1, binary2):
     strings = [binary1, binary2]
     decimals = []
