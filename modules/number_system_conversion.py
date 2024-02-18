@@ -178,7 +178,13 @@ def decimal_to_binary(x):
         decimal_count = 0
 
         while True:
-            binary.append('1' if int(frac) % 2 != 0 else '0')
+            if frac * 2 >= 1:
+                binary.append('1')
+                frac = frac * 2 - 1
+
+            else:
+                binary.append('0')
+                frac = frac * 2
 
             decimal_count += 1
             if frac == 0 or decimal_count == 9:
