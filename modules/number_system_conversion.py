@@ -237,13 +237,14 @@ def octal_to_binary(x):
             temp_whole = []
 
             while True:
-                temp_whole.append('1' if int(whole) % 2 != 0 else '0')
+                temp_whole.append('1' if int(i) % 2 != 0 else '0')
 
                 i = int(i) // 2
                 if int(i) == 0:
                     temp_whole.reverse()
-                    for i in temp_whole:
-                        binary.append(i)
+                    temp_whole = ''.join(temp_whole)
+                    temp_whole = temp_whole.zfill(3)
+                    binary.append(temp_whole)
                     break
 
         binary.append('.')
@@ -252,13 +253,14 @@ def octal_to_binary(x):
             temp_frac = []
 
             while True:
-                temp_frac.append('1' if int(frac) % 2 != 0 else '0')
+                temp_frac.append('1' if int(i) % 2 != 0 else '0')
 
                 i = int(i) // 2
                 if int(i) == 0:
                     temp_frac.reverse()
-                    for i in temp_frac:
-                        binary.append(i)
+                    temp_frac = ''.join(temp_frac)
+                    temp_frac = temp_frac.zfill(3)
+                    binary.append(temp_frac)
                     break
 
     # conversion without radix
@@ -271,8 +273,9 @@ def octal_to_binary(x):
                 i = int(i) // 2
                 if int(i) == 0:
                     temp.reverse()
-                    for i in temp:
-                        binary.append(i)
+                    temp = ''.join(temp)
+                    temp = temp.zfill(3)
+                    binary.append(temp)
                     break
     
     binary = ''.join(binary)
@@ -308,8 +311,9 @@ def hexa_to_binary(x):
                 i = int(i) // 2
                 if int(i) == 0:
                     temp_whole.reverse()
-                    for i in temp_whole:
-                        binary.append(i)
+                    temp_whole = ''.join(temp_whole)
+                    temp_whole = temp_whole.zfill(3)
+                    binary.append(temp_whole)
                     break
 
         binary.append('.')
@@ -323,8 +327,9 @@ def hexa_to_binary(x):
                 i = int(i) // 2
                 if int(i) == 0:
                     temp_frac.reverse()
-                    for i in temp_frac:
-                        binary.append(i)
+                    temp_frac = ''.join(temp_frac)
+                    temp_frac = temp_frac.zfill(3)
+                    binary.append(temp_frac)
                     break
 
     # conversion without radix
@@ -336,8 +341,9 @@ def hexa_to_binary(x):
                 i = int(i) // 2
                 if int(i) == 0:
                     temp.reverse()
-                    for i in temp:
-                        binary.append(i)
+                    temp = ''.join(temp)
+                    temp = temp.zfill(3)
+                    binary.append(temp)
                     break
     
     binary = ''.join(binary)
