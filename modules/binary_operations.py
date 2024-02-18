@@ -1,102 +1,110 @@
-# Unsigned
 def division_unsigned(binary1, binary2):
-    pass
+    strings = [binary1, binary2]
+    decimals = []
+
+    for x in strings:
+        decimal = 0
+        # checking for radix
+        if '.' in x:
+            whole = x[:x.index('.')]
+            frac = x[x.index('.')+1:]
+
+            # conversion
+            for i in range(len(whole)-1, -1, -1):
+                decimal += int(whole[i]) * (2**(len(whole)-1-i))
+
+            for i in range(1, len(frac)+1):
+                decimal += int(frac[i-1]) * (2**(-i))
+
+        else:
+            for i in range(len(x)-1, -1, -1):
+                decimal += int(x[i]) * (2**(len(x)-1-i))
+        
+        decimals.append(decimal)
+
+    quotient = str(decimals[0] / decimals[1])
+    return quotient
 
 def multiplication_unsigned(binary1, binary2):
-    pass
+    strings = [binary1, binary2]
+    decimals = []
+
+    for x in strings:
+        decimal = 0
+        # checking for radix
+        if '.' in x:
+            whole = x[:x.index('.')]
+            frac = x[x.index('.')+1:]
+
+            # conversion
+            for i in range(len(whole)-1, -1, -1):
+                decimal += int(whole[i]) * (2**(len(whole)-1-i))
+
+            for i in range(1, len(frac)+1):
+                decimal += int(frac[i-1]) * (2**(-i))
+
+        else:
+            for i in range(len(x)-1, -1, -1):
+                decimal += int(x[i]) * (2**(len(x)-1-i))
+        
+        decimals.append(decimal)
+
+    product = str(decimals[0] * decimals[1])
+    return product
 
 def subtraction_unsigned(binary1, binary2):
-    borrow = 0
-    result = ""
-    decimal_index = None
+    strings = [binary1, binary2]
+    decimals = []
 
-    # check for decimal
-    if '.' in binary1 and '.' in binary2:
-        decimal_index = binary1.index('.') - len(binary1) + 1
+    for x in strings:
+        decimal = 0
+        # checking for radix
+        if '.' in x:
+            whole = x[:x.index('.')]
+            frac = x[x.index('.')+1:]
 
-    # adding decimal if one have decimal and other have no decimal
-    if '.' in binary1 and '.' not in binary2:
-        decimal_index = binary1.index('.') - len(binary1) + 1
-        binary2 = binary2 + '.' + ("0" * (decimal_index * -1))
+            # conversion
+            for i in range(len(whole)-1, -1, -1):
+                decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
-    elif '.' in binary2 and '.' not in binary1:
-        decimal_index = binary2.index('.') - len(binary2) + 1
-        binary1 = binary1 + '.' + ("0" * (decimal_index * -1))
+            for i in range(1, len(frac)+1):
+                decimal += int(frac[i-1]) * (2**(-i))
 
-    # padding with 0s to make sure that both have same length
-    max_len = max(len(binary1), len(binary2))
-    binary1 = binary1.zfill(max_len)
-    binary2 = binary2.zfill(max_len)
-
-    # subtracting
-    for i in range(max_len - 1, -1, -1):
-        if binary1[i] == '.' or binary2[i] == '.':
-            continue
         else:
-            diff = int(binary1[i]) - int(binary2[i]) - borrow
-            result = str(diff % 2) + result
-            borrow = 1 if diff < 0 else 0
+            for i in range(len(x)-1, -1, -1):
+                decimal += int(x[i]) * (2**(len(x)-1-i))
+        
+        decimals.append(decimal)
 
-    if decimal_index:
-        result = result[:decimal_index] + '.' + result[decimal_index:]
-
-    print(f"\n{binary1} - {binary2} = {result}")
+    difference = str(decimals[0] - decimals[1])
+    return difference
 
 def addition_unsigned(binary1, binary2):
-    carry = 0
-    result = ""
-    decimal_index = None
+    strings = [binary1, binary2]
+    decimals = []
 
-    # check for decimal
-    if '.' in binary1 and '.' in binary2:
-        decimal_index = binary1.index('.') - len(binary1) + 1
+    for x in strings:
+        decimal = 0
+        # checking for radix
+        if '.' in x:
+            whole = x[:x.index('.')]
+            frac = x[x.index('.')+1:]
 
-    # adding decimal if one have decimal and other have no decimal
-    if '.' in binary1 and '.' not in binary2:
-        decimal_index = binary1.index('.') - len(binary1) + 1
-        binary2 = binary2 + '.' + ("0" * (decimal_index * -1))
+            # conversion
+            for i in range(len(whole)-1, -1, -1):
+                decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
-    elif '.' in binary2 and '.' not in binary1:
-        decimal_index = binary2.index('.') - len(binary2) + 1
-        binary1 = binary1 + '.' + ("0" * (decimal_index * -1))
+            for i in range(1, len(frac)+1):
+                decimal += int(frac[i-1]) * (2**(-i))
 
-    # padding with 0s to make sure that both have same length
-    max_len = max(len(binary1), len(binary2))
-    binary1 = binary1.zfill(max_len)
-    binary2 = binary2.zfill(max_len)
-
-    # adding
-    for i in range(max_len - 1, -1, -1):
-        if binary1[i] == '.' or binary2[i] == '.':
-            continue
         else:
-            sum = int(binary1[i]) + int(binary2[i]) + carry
-            result = str(sum % 2) + result
-            carry = sum // 2
+            for i in range(len(x)-1, -1, -1):
+                decimal += int(x[i]) * (2**(len(x)-1-i))
+        
+        decimals.append(decimal)
 
-    if carry:
-        result = "1" + result
+    sum = str(decimals[0] + decimals[1])
+    return sum
 
-    if decimal_index:
-        result = result[:decimal_index] + '.' + result[decimal_index:]
-
-    print(f"\n{binary1} + {binary2} = {result}")
-
-def negative_unsigned(binary1, binary2):
-    pass
-
-# Signed
-def division_signed(binary1, binary2):
-    pass
-
-def multiplication_signed(binary1, binary2):
-    pass
-
-def subtraction_signed(binary1, binary2):
-    pass
-
-def addition_signed(binary1, binary2):
-    pass
-
-def negative_signed(binary1, binary2):
-    pass
+def negative_unsigned():
+    binary = input('Input Binary: ')
