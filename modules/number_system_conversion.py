@@ -59,6 +59,7 @@ def binary_to_octal(x):
             octal.append(str(temp))
 
     else:
+        # padding 0 to the binary to make sure it is divisible by 3
         while len(x) % 3 != 0:
             x = list(x)
             x.insert(0, '0')
@@ -151,6 +152,11 @@ def binary_to_hexa(x):
 # decimal
 def decimal_to_binary(x):
     binary = []
+    negative = False
+
+    if '-' in x:
+        x = x.replace('-', '')
+        negative = True
 
     # checking for radix
     if '.' in x:
@@ -171,7 +177,8 @@ def decimal_to_binary(x):
 
             if whole == 0:
                 temp_whole.reverse()
-                binary.extend(temp_whole)
+                for i in temp_whole:
+                    binary.append(i)
                 break
 
         binary.append('.')
@@ -206,8 +213,12 @@ def decimal_to_binary(x):
             if x == 0:
                 binary.reverse()
                 break
-
+    
     binary = ''.join(binary)
+
+    if negative:
+        binary = '-'+binary
+
     return binary
     
 # octal
@@ -291,8 +302,6 @@ def hexa_to_binary(x):
 
         elif isinstance(i, str): 
             x[x.index(i)] = hex_mapping[i]
-
-    print(x)
     
     # checking for radix
     if '.' in x:
