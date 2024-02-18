@@ -13,6 +13,7 @@ def binary_to_decimal(x):
         for i in range(1, len(frac)+1):
             decimal += int(frac[i-1]) * (2**(-i))
 
+    # conversion without radix
     else:
         for i in range(len(x)-1, -1, -1):
             decimal += int(x[i]) * (2**(len(x)-1-i))
@@ -56,6 +57,7 @@ def binary_to_octal(x):
                 temp += int(string[i]) * (2**(len(string)-1-i))
             octal.append(str(temp))
 
+    # conversion without radix
     else:
         # padding 0 to the binary to make sure it is divisible by 3
         while len(x) % 3 != 0:
