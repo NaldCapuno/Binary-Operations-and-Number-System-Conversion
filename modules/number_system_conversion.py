@@ -312,7 +312,7 @@ def hexa_to_binary(x):
                 if int(i) == 0:
                     temp_whole.reverse()
                     temp_whole = ''.join(temp_whole)
-                    temp_whole = temp_whole.zfill(3)
+                    temp_whole = temp_whole.zfill(4)
                     binary.append(temp_whole)
                     break
 
@@ -328,7 +328,7 @@ def hexa_to_binary(x):
                 if int(i) == 0:
                     temp_frac.reverse()
                     temp_frac = ''.join(temp_frac)
-                    temp_frac = temp_frac.zfill(3)
+                    temp_frac = temp_frac.zfill(4)
                     binary.append(temp_frac)
                     break
 
@@ -342,7 +342,7 @@ def hexa_to_binary(x):
                 if int(i) == 0:
                     temp.reverse()
                     temp = ''.join(temp)
-                    temp = temp.zfill(3)
+                    temp = temp.zfill(4)
                     binary.append(temp)
                     break
     
