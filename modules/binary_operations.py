@@ -102,5 +102,19 @@ def addition_unsigned(binary1, binary2):
     sum = str(decimals[0] + decimals[1])
     return sum
 
-def negative_unsigned(binary):
-    pass
+def negative(binary):
+    binary = list(binary)
+
+    for i in range(len(binary)-1, -1, -1):
+        if binary[i] == '1':
+            for j in range(i-1, -1, -1):
+                if binary[j] == '.':
+                    continue
+                elif binary[j] == '1':
+                    binary[j] = '0'
+                else:
+                    binary[j] = '1'
+            break
+
+    binary = ''.join(binary)
+    return binary

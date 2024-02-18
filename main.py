@@ -90,7 +90,9 @@ def binary_operations():
         os.system('cls')
         print(f"{options[int(select)-1]}")
         binary = input("Input Binary: ")
-        menu2.negative_unsigned(binary)
+        twos_complement = menu2.negative(binary)
+
+        print(f"\n{binary} = {twos_complement}")
 
     input('Press Enter to continue...')
 
