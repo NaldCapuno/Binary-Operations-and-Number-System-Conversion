@@ -151,12 +151,10 @@ def binary_to_hexa(x):
 # decimal
 def decimal_to_binary(x):
     binary = []
-    negative = False
 
     # check if negative
     if '-' in x:
         x = x.replace('-', '')
-        negative = True
 
     # checking for radix
     if '.' in x:
@@ -204,10 +202,6 @@ def decimal_to_binary(x):
                 break
     
     binary = ''.join(binary)
-
-    # check if negative
-    if negative:
-        binary = '-'+binary
 
     # padding
     if '.' in binary:
