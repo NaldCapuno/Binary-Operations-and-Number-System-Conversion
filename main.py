@@ -57,7 +57,7 @@ def binary_operations():
             if select == '1':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                quotient = menu2.division_unsigned(binary1, binary2)
+                quotient = menu2.operations(binary1, binary2, select)
                 quotient_binary = menu3.decimal_to_binary(quotient)
 
                 print(f"\n{binary1} / {binary2} = {quotient_binary}")
@@ -65,7 +65,7 @@ def binary_operations():
             elif select == '2':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                product = menu2.multiplication_unsigned(binary1, binary2)
+                product = menu2.operations(binary1, binary2, select)
                 product_binary = menu3.decimal_to_binary(product)
 
                 print(f"\n{binary1} * {binary2} = {product_binary}")
@@ -73,7 +73,7 @@ def binary_operations():
             elif select == '3':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                difference = menu2.subtraction_unsigned(binary1, binary2)
+                difference = menu2.operations(binary1, binary2, select)
                 difference_binary = menu3.decimal_to_binary(difference)
 
                 print(f"\n{binary1} - {binary2} = {difference_binary}")
@@ -81,7 +81,7 @@ def binary_operations():
             elif select == '4':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                sum = menu2.addition_unsigned(binary1, binary2)
+                sum = menu2.operations(binary1, binary2, select)
                 sum_binary = menu3.decimal_to_binary(sum)
 
                 print(f"\n{binary1} + {binary2} = {sum_binary}")
