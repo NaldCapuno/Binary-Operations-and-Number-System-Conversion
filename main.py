@@ -109,39 +109,60 @@ def conversion():
 
     if select:
         os.system('cls')
-        print(f"{options[int(select)-1]} to X\n")
+        print(f"Number System Conversion\n[1] Signed Binary\n[2] Unsigned Binary")
+        option = input("Choose an option: ")
 
-        x = input(f"Input {options[int(select)-1]}: ")
+        if option == '1':
+            os.system('cls')
+            print(f"{options[int(select)-1]} Conversion (Signed)")
 
-        if select == '1':
-            decimal = menu3.binary_to_decimal(x)
-            hexa = menu3.binary_to_hexa(x)
-            octal = menu3.binary_to_octal(x)
+            if select == '1':
+                pass
 
-            print(f"Output:\n\nDecimal: {decimal}\nHexa: {hexa}\nOctal: {octal}")
+            elif select == '2':
+                pass
 
-        elif select == '2':
-            binary = menu3.decimal_to_binary(x)
-            hexa = menu3.binary_to_hexa(binary)
-            octal = menu3.binary_to_octal(binary)
+            elif select == '3':
+                pass
 
-            print(f"Output:\n\nBinary: {binary}\nHexa: {hexa}\nOctal: {octal}")
+            elif select == '4':
+                pass
 
-        elif select == '3':
-            binary = menu3.octal_to_binary(x)
-            decimal = menu3.binary_to_decimal(binary)
-            hexa = menu3.binary_to_hexa(binary)
+        elif option == '2':
+            os.system('cls')
+            print(f"{options[int(select)-1]} Conversion (Unsigned)")
+            
+            x = input(f"Input {options[int(select)-1]}: ")
 
-            print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nHexa: {hexa}")
+            if select == '1':
+                decimal = menu3.binary_to_decimal(x)
+                hexa = menu3.binary_to_hexa(x)
+                octal = menu3.binary_to_octal(x)
 
-        elif select == '4':
-            binary = menu3.hexa_to_binary(x)
-            decimal = menu3.binary_to_decimal(binary)
-            octal = menu3.binary_to_octal(binary)
+                print(f"Output:\n\nDecimal: {decimal}\nHexa: {hexa}\nOctal: {octal}")
 
-            print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nOctal: {octal}")
+            elif select == '2':
+                binary = menu3.decimal_to_binary(x)
+                hexa = menu3.binary_to_hexa(binary)
+                octal = menu3.binary_to_octal(binary)
 
-        input("\nPress Enter to continue...")
+                print(f"Output:\n\nBinary: {binary}\nHexa: {hexa}\nOctal: {octal}")
+
+            elif select == '3':
+                binary = menu3.octal_to_binary(x)
+                decimal = menu3.binary_to_decimal(binary)
+                hexa = menu3.binary_to_hexa(binary)
+
+                print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nHexa: {hexa}")
+
+            elif select == '4':
+                binary = menu3.hexa_to_binary(x)
+                decimal = menu3.binary_to_decimal(binary)
+                octal = menu3.binary_to_octal(binary)
+
+                print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nOctal: {octal}")
+
+    input("\nPress Enter to continue...")
 
 if __name__ == "__main__":
     main_menu()
