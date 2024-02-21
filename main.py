@@ -21,10 +21,10 @@ def main_menu():
 # Menu-2 (Binary Operations)
 def binary_operations():
     os.system('cls')
-    print("Binary Operations\n[1] Division\n[2] Multiplication\n[3] Subtraction\n[4] Addition\n[5] Negative (2's Complement)\n[6] Back")
+    print("Binary Operations\n[1] Division\n[2] Multiplication\n[3] Subtraction\n[4] Addition\n[5] twos_complement (2's Complement)\n[6] Back")
     select = input("Choose an option: ")
 
-    options = ["Division", "Multiplication", "Subtraction", "Addition", "Negative (2's Complement)"]
+    options = ["Division", "Multiplication", "Subtraction", "Addition", "twos_complement (2's Complement)"]
 
     if select == '6':
         main_menu()
@@ -39,16 +39,48 @@ def binary_operations():
             print(f"Binary {options[int(select)-1]} (Signed)")
 
             if select == '1':
-                pass
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
+                quotient = menu2.operations_signed(binary1, binary2, select)
+                quotient_binary = menu3.decimal_to_binary(quotient)
+
+                if '-' in quotient:
+                    quotient_binary = menu2.twos_complement(quotient_binary)
+
+                print(f"\n{binary1} / {binary2} = {quotient_binary}")
 
             elif select == '2':
-                pass
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
+                product = menu2.operations_signed(binary1, binary2, select)
+                product_binary = menu3.decimal_to_binary(product)
+
+                if '-' in product:
+                    product_binary = menu2.twos_complement(product_binary)
+
+                print(f"\n{binary1} * {binary2} = {product_binary}")
 
             elif select == '3':
-                pass
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
+                difference = menu2.operations_signed(binary1, binary2, select)
+                difference_binary = menu3.decimal_to_binary(difference)
+
+                if '-' in difference:
+                    difference_binary = menu2.twos_complement(difference_binary)
+
+                print(f"\n{binary1} - {binary2} = {difference_binary}")
 
             elif select == '4':
-                pass
+                binary1 = input("Input Binary 1: ")
+                binary2 = input("Input Binary 2: ")
+                sum = menu2.operations_signed(binary1, binary2, select)
+                sum_binary = menu3.decimal_to_binary(sum)
+
+                if '-' in sum:
+                    sum_binary = menu2.twos_complement(sum_binary)
+
+                print(f"\n{binary1} + {binary2} = {sum_binary}")
 
         elif option == '2':
             os.system('cls')
@@ -57,7 +89,7 @@ def binary_operations():
             if select == '1':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                quotient = menu2.operations(binary1, binary2, select)
+                quotient = menu2.operations_unsigned(binary1, binary2, select)
                 quotient_binary = menu3.decimal_to_binary(quotient)
 
                 print(f"\n{binary1} / {binary2} = {quotient_binary}")
@@ -65,7 +97,7 @@ def binary_operations():
             elif select == '2':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                product = menu2.operations(binary1, binary2, select)
+                product = menu2.operations_unsigned(binary1, binary2, select)
                 product_binary = menu3.decimal_to_binary(product)
 
                 print(f"\n{binary1} * {binary2} = {product_binary}")
@@ -73,7 +105,7 @@ def binary_operations():
             elif select == '3':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                difference = menu2.operations(binary1, binary2, select)
+                difference = menu2.operations_unsigned(binary1, binary2, select)
                 difference_binary = menu3.decimal_to_binary(difference)
 
                 print(f"\n{binary1} - {binary2} = {difference_binary}")
@@ -81,7 +113,7 @@ def binary_operations():
             elif select == '4':
                 binary1 = input("Input Binary 1: ")
                 binary2 = input("Input Binary 2: ")
-                sum = menu2.operations(binary1, binary2, select)
+                sum = menu2.operations_unsigned(binary1, binary2, select)
                 sum_binary = menu3.decimal_to_binary(sum)
 
                 print(f"\n{binary1} + {binary2} = {sum_binary}")
@@ -90,7 +122,7 @@ def binary_operations():
         os.system('cls')
         print(f"{options[int(select)-1]}")
         binary = input("Input Binary: ")
-        twos_complement = menu2.negative(binary)
+        twos_complement = menu2.twos_complement(binary)
 
         print(f"\n{binary} = {twos_complement}")
 
