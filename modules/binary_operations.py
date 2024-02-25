@@ -11,18 +11,27 @@ def operations(binary1, binary2, select, option):
 
             # converting binary to decimal
             for i in range(len(whole)-1, -1, -1):
+                # signed
                 if i == 0 and whole[i] == '1' and option == '1':
                     decimal += (int(whole[i]) * -1) * (2**(len(whole)-1-i))
     
+                # unsigned
                 else:
                     decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
             for i in range(1, len(frac)+1):
                 decimal += int(frac[i-1]) * (2**(-i))
 
+        # conversion without radix
         else:
             for i in range(len(x)-1, -1, -1):
-                decimal += int(x[i]) * (2**(len(x)-1-i))
+                # signed
+                if i == 0 and x[i] == '1' and option == '1':
+                    decimal += (int(x[i]) * -1) * (2**(len(x)-1-i))
+
+                # unsigned
+                else:
+                    decimal += int(x[i]) * (2**(len(x)-1-i))
     
         decimals.append(decimal)
 
