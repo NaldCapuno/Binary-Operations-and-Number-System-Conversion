@@ -1,14 +1,20 @@
 # binary
-def binary_to_decimal(x):
+def binary_to_decimal(x, option):
     decimal = 0
 
     # checking for radix
     if '.' in x:
         whole, frac = x.split('.')
 
-        # conversion
+        # converting binary to decimal
         for i in range(len(whole)-1, -1, -1):
-            decimal += int(whole[i]) * (2**(len(whole)-1-i))
+            # signed
+            if i == 0 and whole[i] == '1' and option == '1':
+                decimal += (int(whole[i]) * -1) * (2**(len(whole)-1-i))
+
+            # unsigned
+            else:
+                decimal += int(whole[i]) * (2**(len(whole)-1-i))
 
         for i in range(1, len(frac)+1):
             decimal += int(frac[i-1]) * (2**(-i))
@@ -16,85 +22,34 @@ def binary_to_decimal(x):
     # conversion without radix
     else:
         for i in range(len(x)-1, -1, -1):
-            decimal += int(x[i]) * (2**(len(x)-1-i))
+            # signed
+            if i == 0 and x[i] == '1' and option == '1':
+                decimal += (int(x[i]) * -1) * (2**(len(x)-1-i))
+
+            # unsigned
+            else:
+                decimal += int(x[i]) * (2**(len(x)-1-i))
 
     return decimal
 
-def binary_to_octal(x):
-    octal = []
-
-    # checking for radix
-    if '.' in x:
-        whole, frac = x.split('.')
-
-        # padding 0 to the binary to make sure it is divisible by 3
-        while len(whole) % 3 != 0:
-            whole = list(whole)
-            whole.insert(0, '0')
-            whole = ''.join(whole)
-
-        while len(frac) % 3 != 0:
-            frac = list(frac)
-            frac.append('0')
-            frac = ''.join(frac)
-        
-        # slicing the binary by 3
-        strings_whole = [whole[i:i+3] for i in range(0, len(whole), 3)]
-        strings_frac = [frac[i:i+3] for i in range(0, len(frac), 3)]
-
-        # conversion
-        for string in strings_whole:
-            temp = 0
-            for i in range(len(string)-1, -1, -1):
-                temp += int(string[i]) * (2**(len(string)-1-i))
-            octal.append(str(temp))
-
-        octal.append('.')
-
-        for string in strings_frac:
-            temp = 0
-            for i in range(len(string)-1, -1, -1):
-                temp += int(string[i]) * (2**(len(string)-1-i))
-            octal.append(str(temp))
-
-    # conversion without radix
-    else:
-        # padding 0 to the binary to make sure it is divisible by 3
-        while len(x) % 3 != 0:
-            x = list(x)
-            x.insert(0, '0')
-            x = ''.join(x)
-
-        # slicing the binary by 3
-        strings = [x[i:i+3] for i in range(0, len(x), 3)]
-
-        # conversion
-        for string in strings:
-            temp = 0
-            for i in range(len(string)-1, -1, -1):
-                temp += int(string[i]) * (2**(len(string)-1-i))
-            octal.append(str(temp))
-
-    octal = ''.join(octal)
-    return octal
-
-def binary_to_hexa(x):
+def binary_to_hexa(x, option):
     hexa = []
 
     # checking for radix
     if '.' in x:
         whole, frac = x.split('.')
 
-        # padding 0 to the binary to make sure it is divisible by 4
-        while len(whole) % 4 != 0:
-            whole = list(whole)
-            whole.insert(0, '0')
-            whole = ''.join(whole)
+        # padding 0s or 1s to the binary to make sure it is divisible by 4
+        # signed
+        if whole[0] == '1' and option == '1':
+            whole = '1' * (4 - len(whole) % 4) + whole if len(whole) % 4 != 0 else whole
+            whole = '1111' + whole
 
-        while len(frac) % 4 != 0:
-            frac = list(frac)
-            frac.append('0')
-            frac = ''.join(frac)
+        # unsigned
+        else:
+            whole = '0' * (4 - len(whole) % 4) + whole if len(whole) % 4 != 0 else whole
+
+        frac = ''.join(list(frac) + ['0' * (4 - len(frac) % 4)]) if len(frac) % 4 != 0 else frac
         
         # slicing the binary by 4
         strings_whole = [whole[i:i+4] for i in range(0, len(whole), 4)]
@@ -117,10 +72,15 @@ def binary_to_hexa(x):
 
     # conversion without radix
     else:
-        while len(x) % 4 != 0:
-            x = list(x)
-            x.insert(0, '0')
-            x = ''.join(x)
+        # padding 0s or 1s to the binary to make sure it is divisible by 4
+        # signed
+        if x[0] == '1' and option == '1':
+            x = '1' * (4 - len(x) % 4) + x if len(x) % 4 != 0 else x
+            x = '1111' + x
+
+        # unsigned
+        else:
+            x = '0' * (4 - len(x) % 4) + x if len(x) % 4 != 0 else x
 
         # slicing the binary by 4
         strings = [x[i:i+4] for i in range(0, len(x), 4)]
@@ -147,6 +107,69 @@ def binary_to_hexa(x):
 
     hexa = ''.join(hexa)
     return hexa
+
+def binary_to_octal(x, option):
+    octal = []
+
+    # checking for radix
+    if '.' in x:
+        whole, frac = x.split('.')
+
+        # padding 0s or 1s to the binary to make sure it is divisible by 3
+        # signed
+        if whole[0] == '1' and option == '1':
+            whole = '1' * (3 - len(whole) % 3) + whole if len(whole) % 3 != 0 else whole
+            whole = '111' + whole
+
+        # unsigned
+        else:
+            whole = '0' * (3 - len(whole) % 3) + whole if len(whole) % 3 != 0 else whole
+
+        frac = ''.join(list(frac) + ['0' * (3 - len(frac) % 3)]) if len(frac) % 3 != 0 else frac
+        
+        # slicing the binary by 3
+        strings_whole = [whole[i:i+3] for i in range(0, len(whole), 3)]
+        strings_frac = [frac[i:i+3] for i in range(0, len(frac), 3)]
+
+        # conversion
+        for string in strings_whole:
+            temp = 0
+            for i in range(len(string)-1, -1, -1):
+                temp += int(string[i]) * (2**(len(string)-1-i))
+            octal.append(str(temp))
+
+        octal.append('.')
+
+        for string in strings_frac:
+            temp = 0
+            for i in range(len(string)-1, -1, -1):
+                temp += int(string[i]) * (2**(len(string)-1-i))
+            octal.append(str(temp))
+
+    # conversion without radix
+    else:
+        # padding 0s and 1s to the binary to make sure it is divisible by 3
+        # signed
+        if x[0] == '1' and option == '1':
+            x = '1' * (3 - len(x) % 3) + x if len(x) % 3 != 0 else x
+            x = '111' + x
+
+        # unsigned
+        else:
+            x = '0' * (3 - len(x) % 3) + x if len(x) % 3 != 0 else x
+            
+        # slicing the binary by 3
+        strings = [x[i:i+3] for i in range(0, len(x), 3)]
+
+        # conversion
+        for string in strings:
+            temp = 0
+            for i in range(len(string)-1, -1, -1):
+                temp += int(string[i]) * (2**(len(string)-1-i))
+            octal.append(str(temp))
+
+    octal = ''.join(octal)
+    return octal
 
 # decimal
 def decimal_to_binary(x):
@@ -178,13 +201,8 @@ def decimal_to_binary(x):
         decimal_count = 0
 
         while True:
-            if frac * 2 >= 1:
-                binary.append('1')
-                frac = frac * 2 - 1
-
-            else:
-                binary.append('0')
-                frac = frac * 2
+            binary.append('1' if frac * 2 >= 1 else '0')
+            frac = frac * 2 - 1 if frac * 2 >= 1 else frac * 2
 
             decimal_count += 1
             if frac == 0 or decimal_count == 9:
@@ -205,16 +223,10 @@ def decimal_to_binary(x):
 
     # padding
     if '.' in binary:
-        while len(binary[:binary.index('.')]) % 4 != 0:
-            binary = list(binary)
-            binary.insert(0, '0')
-            binary = ''.join(binary)
+        binary = '0' * (4 - len(binary[:binary.index('.')]) % 4) + binary if len(binary[:binary.index('.')]) % 4 != 0 else binary
     
     else:
-        while len(binary) % 4 != 0:
-            binary = list(binary)
-            binary.insert(0, '0')
-            binary = ''.join(binary)
+        binary = '0' * (4 - len(binary) % 4) + binary if len(binary) % 4 != 0 else binary
 
     return binary
     
@@ -281,7 +293,9 @@ def hexa_to_binary(x):
 
     # hex mapping
     x = list(x)
-    hex_mapping = {'1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9', 'A':'10', 'B':'11', 'C':'12', 'D':'13', 'E':'14', 'F':'15'}
+    hex_mapping = {'1':'1', '2':'2', '3':'3', '4':'4', '5':'5', '6':'6', '7':'7', '8':'8', '9':'9',
+                   'A':'10', 'B':'11', 'C':'12', 'D':'13', 'E':'14', 'F':'15',
+                   'a':'10', 'b':'11', 'c':'12', 'd':'13', 'e':'14', 'f':'15'}
 
     for i in x:
         if i == '.' or i == '0':
