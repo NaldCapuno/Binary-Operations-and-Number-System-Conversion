@@ -16,7 +16,7 @@ def main_menu():
             conversion()
 
         elif select == '3':
-            break
+            exit()
 
 # Menu-2 (Binary Operations)
 def binary_operations():
@@ -49,10 +49,10 @@ def binary_operations():
                     quotient_binary = menu3.decimal_to_binary(str(quotient))
 
                     if '-' in str(quotient):
-                        quotient_binary = '1111 ' + menu2.twos_complement(quotient_binary)
+                        quotient_binary = '1111' + menu2.twos_complement(quotient_binary)
 
                     else:
-                        quotient_binary = '0000 ' + quotient_binary
+                        quotient_binary = '0000' + quotient_binary
                 
                 elif option == '2':
                     quotient = menu2.operations(binary1, binary2, select, option)
@@ -66,10 +66,10 @@ def binary_operations():
                     product_binary = menu3.decimal_to_binary(str(product))
 
                     if '-' in str(product):
-                        product_binary = '1111 ' + menu2.twos_complement(product_binary)
+                        product_binary = '1111' + menu2.twos_complement(product_binary)
 
                     else:
-                        product_binary = '0000 ' + product_binary
+                        product_binary = '0000' + product_binary
 
                 elif option == '2':
                     product = menu2.operations(binary1, binary2, select, option)
@@ -83,10 +83,10 @@ def binary_operations():
                     difference_binary = menu3.decimal_to_binary(str(difference))
 
                     if '-' in str(difference):
-                        difference_binary = '1111 ' + menu2.twos_complement(difference_binary)
+                        difference_binary = '1111' + menu2.twos_complement(difference_binary)
 
                     else:
-                        difference_binary = '0000 ' + difference_binary
+                        difference_binary = '0000' + difference_binary
 
                 elif option == '2':
                     difference = menu2.operations(binary1, binary2, select, option)
@@ -100,16 +100,18 @@ def binary_operations():
                     sum_binary = menu3.decimal_to_binary(str(sum))
 
                     if '-' in str(sum):
-                        sum_binary = '1111 ' + menu2.twos_complement(sum_binary)
+                        sum_binary = '1111' + menu2.twos_complement(sum_binary)
 
                     else:
-                        sum_binary = '0000 ' + sum_binary
+                        sum_binary = '0000' + sum_binary
                     
                 elif option == '2':
                     sum = menu2.operations(binary1, binary2, select, option)
                     sum_binary = menu3.decimal_to_binary(str(sum))
 
                 print(f"\n{binary1} + {binary2} = {sum_binary}")
+
+        input('Press Enter to continue...')
 
     elif select == '5':
         os.system('cls')
@@ -119,7 +121,7 @@ def binary_operations():
 
         print(f"\n{binary} = {twos_complement}")
 
-    input('Press Enter to continue...')
+        input('Press Enter to continue...')
 
 # Menu-3 (Conversion)
 def conversion():
@@ -132,7 +134,7 @@ def conversion():
     if select == '5':
         main_menu()
 
-    if select:
+    if int(select) >= 1 and int(select) <= 4:
         os.system('cls')
         print(f"Number System Conversion\n[1] Signed Binary\n[2] Unsigned Binary")
         option = input("Choose an option: ")
@@ -163,6 +165,8 @@ def conversion():
 
             elif select == '3':
                 binary = menu3.octal_to_binary(x)
+                if x[0] != '7' and option == '1':
+                    binary = '000' + binary
                 decimal = menu3.binary_to_decimal(binary, option)
                 hexa = menu3.binary_to_hexa(binary, option)
 
@@ -170,12 +174,14 @@ def conversion():
 
             elif select == '4':
                 binary = menu3.hexa_to_binary(x)
+                if x[0] != 'F' and x[0] != 'f' and option == '1':
+                    binary = '0000' + binary
                 decimal = menu3.binary_to_decimal(binary, option)
                 octal = menu3.binary_to_octal(binary, option)
 
                 print(f"Output:\n\nBinary: {binary}\nDecimal: {decimal}\nOctal: {octal}")
 
-    input("\nPress Enter to continue...")
+        input("\nPress Enter to continue...")
 
 if __name__ == "__main__":
     main_menu()
